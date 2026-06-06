@@ -961,6 +961,10 @@ local PatriotLib,cfg,KeyUI
 local succ = pcall(function()
     PatriotLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SyndromeXph/Patriot-Key-System-Ui-Library/main/PatriotUi.luau"))()
 end)
+--网络加载失败直接免密
+if not succ or not PatriotLib then
+    isVerified = true
+		end
 
 cfg = {
     Username = player.Name,
