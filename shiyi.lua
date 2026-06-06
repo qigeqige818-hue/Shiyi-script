@@ -88,7 +88,7 @@ end
   
 -- ========== 初始灵动岛 ==========  
 if dynamicIsland then
-    dynamicIsland.Visible = true --这里保留你原来true/false
+    dynamicIsland.Visible = false --这里保留你原来true/false
 end  
 dynamicIsland.Size = UDim2.new(0.35, 0, 0.06, 0)  
 local clickButton = Instance.new("TextButton")  
