@@ -1,15 +1,19 @@
-local TweenService = game:GetService("TweenService")  
-local RunService = game:GetService("RunService")  
-local Players = game:GetService("Players")  
-local UserInputService = game:GetService("UserInputService")  
-local TeleportService = game:GetService("TeleportService")  
-local HttpService = game:GetService("HttpService")  
-local VirtualInputManager = game:GetService("VirtualInputManager")  
-  
-local SECRET_KEY = "@1145114" -- 密钥  
-local verifyFrame = screenGui:WaitForChild("VerifyFrame")  
-local keyInput = verifyFrame:WaitForChild("KeyInput")  
-local confirmButton = verifyFrame:WaitForChild("ConfirmButton")  
+local screenGui = Instance.new("ScreenGui")
+screenGui.Name = "ShiyiGui"
+screenGui.Parent = game:GetService("Players").LocalPlayer:WaitForChild("PlayerGui")
+
+local TweenService = game:GetService("TweenService")
+local RunService = game:GetService("RunService")
+local Players = game:GetService("Players")
+local UserInputService = game:GetService("UserInputService")
+local TeleportService = game:GetService("TeleportService")
+local HttpService = game:GetService("HttpService")
+local VirtualInputManager = game:GetService("VirtualInputManager")
+
+local SECRET_KEY = "@1145114"  -- 密钥
+local verifyFrame = screenGui:WaitForChild("VerifyFrame")
+local keyInput = verifyFrame:WaitForChild("KeyInput")
+local confirmButton = verifyFrame:WaitForChild("ConfirmButton")
   
 -- 验证界面  
 local verifyFrame = screenGui:WaitForChild("VerifyFrame")  
