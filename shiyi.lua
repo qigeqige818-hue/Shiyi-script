@@ -957,30 +957,38 @@ local function createMainPanel()
 end  
   
 -- ========== 点击灵动岛 ==========  
-local PatriotLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SyndromeXph/Patriot-Key-System-Ui-Library/main/PatriotUi.luau"))()  
-local cfg = {  
-	Username = player.Name,  
-	Executor = getexecutorname and getexecutorname() or "Unknown",  
-	Platform = isMobile and "Mobile" or "PC",  
-	HWID = gethwid and gethwid() or "N/A",  
-	Time = os.date("%H:%M:%S"),  
-       Date = os.date("%Y-%m-%d")  
-}  
-local KeyUI = PatriotLib:New(cfg,{  
-	GetKeyLink = "",  
-	Changelog = {{Ver="v1.0",Date="2026-06-02",Note="Script Release"}},  
-	KeyCallback = function(inputKey)  
-		if inputKey == "@1145114" then  
-			isVerified = true  
-			KeyUI:Close()  
-			hideIsland()  
-			createMainPanel()  
-			showNotification("Verified",true)  
-		else  
-			PatriotLib:Notify("Wrong Key","Check your input")  
-		end  
-	end  
-})  
+local PatriotLib,cfg,KeyUI
+local succ = pcall(function()
+    PatriotLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SyndromeXph/Patriot-Key-System-Ui-Library/main/PatriotUi.luau"))()
+end)
+
+cfg = {
+    Username = player.Name,
+    Executor = getexecutorname and getexecutorname() or "Unknown",
+    Platform = isMobile and "Mobile" or "PC",
+    HWID = gethwid and gethwid() or "N/A",
+    Time = os.date("%H:%M:%S"),
+    Date = os.date("%Y-%m-%d")
+}
+
+if succ and PatriotLib then
+    KeyUI = PatriotLib:New(cfg,{
+        GetKeyLink = "",
+        Changelog = {{Ver="v1.0",Date="2026-06-02",Note="Script Release"}},
+        KeyCallback = function(inputKey)
+            if inputKey == "@1145114" then
+                isVerified = true
+                KeyUI:Close()
+                hideIsland()
+                createMainPanel()
+                showNotification("Verified",true)
+                        else
+                PatriotLib:Notify("Wrong Key","Check your input")
+            end
+        end
+    })
+		end
+  
 local clickButton = Instance.new("TextButton")  
 clickButton.Size = UDim2.new(1,0,1,0)  
 clickButton.BackgroundTransparency = 1  
