@@ -11,10 +11,6 @@ local HttpService = game:GetService("HttpService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 
 local SECRET_KEY = "@1145114"  -- 密钥
-local verifyFrame = screenGui:WaitForChild("VerifyFrame")
-local keyInput = verifyFrame:WaitForChild("KeyInput")
-local confirmButton = verifyFrame:WaitForChild("ConfirmButton")
-  
 -- 验证界面  
 local verifyFrame = screenGui:WaitForChild("VerifyFrame")  
 local keyInput = verifyFrame:WaitForChild("KeyInput")  
