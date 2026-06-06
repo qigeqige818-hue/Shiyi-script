@@ -11,15 +11,21 @@ local HttpService = game:GetService("HttpService")
 local VirtualInputManager = game:GetService("VirtualInputManager")
 
 local SECRET_KEY = "@1145114"  -- 密钥
--- 验证界面  
-local verifyFrame = screenGui:WaitForChild("VerifyFrame")  
-local keyInput = verifyFrame:WaitForChild("KeyInput")  
-local confirmButton = verifyFrame:WaitForChild("ConfirmButton")  
+-- 验证界面
+local verifyFrame,keyInput,confirmButton
+task.spawn(function()
+    verifyFrame = screenGui:WaitForChild("VerifyFrame")
+    keyInput = verifyFrame:WaitForChild("KeyInput")
+    confirmButton = verifyFrame:WaitForChild("ConfirmButton")
+end) 
   
 -- 灵动岛  
-local dynamicIsland = screenGui:WaitForChild("DynamicIsland")  
-local leftLabel = dynamicIsland:WaitForChild("LeftLabel")  
-local fpsLabel = dynamicIsland:WaitForChild("FPSLabel")  
+local dynamicIsland,leftLabel,fpsLabel
+task.spawn(function()
+    dynamicIsland = screenGui:WaitForChild("DynamicIsland")
+    leftLabel = dynamicIsland:WaitForChild("LeftLabel")
+    fpsLabel = dynamicIsland:WaitForChild("FPSLabel")
+end)
   
 -- ========== 检测是否为移动端 ==========  
 local isMobile = UserInputService.TouchEnabled and not UserInputService.KeyboardEnabled  
