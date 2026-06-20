@@ -958,13 +958,10 @@ end
   
 -- ========== 点击灵动岛 ==========  
 local PatriotLib,cfg,KeyUI
-local succ = pcall(function()
-    PatriotLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/SyndromeXph/Patriot-Key-System-Ui-Library/main/PatriotUi.luau"))()
-end)
---网络加载失败直接免密
-if not succ or not PatriotLib then
-    isVerified = true
-		end
+-- 跳过联网密钥库加载，直接解锁脚本
+local succ = false
+PatriotLib = nil
+isVerified = true
 
 cfg = {
     Username = player.Name,
@@ -975,37 +972,26 @@ cfg = {
     Date = os.date("%Y-%m-%d")
 }
 
-if succ and PatriotLib then
-    KeyUI = PatriotLib:New(cfg,{
-        GetKeyLink = "",
-        Changelog = {{Ver="v1.0",Date="2026-06-02",Note="Script Release"}},
-        KeyCallback = function(inputKey)
-            if inputKey == "@1145114" then
-                isVerified = true
-                KeyUI:Close()
-                hideIsland()
-                createMainPanel()
-                showNotification("Verified",true)
-                        else
-                PatriotLib:Notify("Wrong Key","Check your input")
-            end
-        end
-    })
-		end
-  
-local clickButton = Instance.new("TextButton")  
-clickButton.Size = UDim2.new(1,0,1,0)  
-clickButton.BackgroundTransparency = 1  
-clickButton.Text = ""  
-clickButton.Parent = dynamicIsland  
-clickButton.MouseButton1Click:Connect(function()  
-	if not isVerified then return end  
-	if mainPanel then  
-		mainPanel:Destroy()  
-		mainPanel = nil  
-		showIsland()  
-	else  
-		hideIsland()  
-		createMainPanel()  
-	end  
-end)  
+local clickButton = Instance.new("TextButton")
+clickButton.Size = UDim2.new(1,0,1,0)
+clickButton.BackgroundTransparency = 1
+clickButton.Text = ""
+clickButton.Parent = dynamicIsland
+clickButton.MouseButton1Click:Connect(function()
+    if mainPanel then
+        mainPanel:Destroy()
+        mainPanel = nil
+        showIsland()
+    else
+        hideIsland()
+        createMainPanel()
+    end
+end)
+
+-- 注入后自动打开主面板，免密钥
+task.spawn(function()
+    task.wait(0.1)
+    hideIsland()
+    createMainPanel()
+    showNotification("Verified",true)
+end)
